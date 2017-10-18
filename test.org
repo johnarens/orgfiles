@@ -1,0 +1,40 @@
+
+* Top level headline
+** Second level
+*** 3rd level
+    some text
+*** 3rd level
+    more text
+* Another top level headline
+
+#+NAME: sampformula
+#+BEGIN_SRC python :var angle=90 :var r=2 :exports none
+from math import radians, cos
+result = r*cos(radians(angle))
+return result
+#+END_SRC
+
+#+RESULTS: sampformula
+: 1.22464679915e-16
+
+| angle |  r |             x |
+|-------+----+---------------|
+|    30 | 10 | 8.66025403784 |
+|    45 | 10 | 7.07106781187 |
+|    60 | 10 |           5.0 |
+#+TBLFM: $3='(org-sbe "sampformula" (angle $1) (r $2))
+
+
+ #+BEGIN_SRC dot :file my_output_file.png :cmdline -Kdot -Tpng
+   digraph G {
+     step1 -> step2;
+     step3 -> step4;
+     step6
+     my_start -> one_branch;
+     my_start -> another_branch;
+   }
+ #+END_SRC
+
+ #+RESULTS:
+ [[file:my_output_file.png]]
+
