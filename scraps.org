@@ -1,0 +1,124 @@
+#+STARTUP: showall inlineimages
+#+TITLE: Scraps that might be useful someday
+#+AUTHOR: John Arens
+
+* Org Babel
+https://github.com/dfeich/org-babel-examples/blob/master/plantuml/plantuml-babel.org
+
+
+* Dot and Graphviz
+
+[[http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html][Dot Source Code Blocks in Org Mode]]
+https://zhangweize.wordpress.com/2010/08/25/creating-uml-images-by-using-plantuml-and-org-babel-in-emacs/
+
+#+BEGIN_SRC dot :file simple_graph.png
+  graph graphname { 
+                  a -- b; 
+                  b -- c;
+                  b -- d;
+                  d -- a;
+          }
+#+END_SRC
+
+#+BEGIN_SRC dot :file out.png :cmdline -Kdot -Tpng
+
+digraph {
+   rankdir=TB;
+   splines=true;
+   node [shape=box];
+
+la1 -> la2
+la1 -> la5
+la2 -> la3
+la2 -> la4
+}
+#+END_SRC
+
+
+* Emacs
+Look into using use-package.
+https://www.lunaryorn.com/posts/my-emacs-configuration-with-use-package.html
+https://justin.abrah.ms/dotfiles/emacs.html
+
+** Memory Leak
+
+http://notes.secretsauce.net/notes/2015/09/19_debugging-gnu-emacs-memory-leaks-part-1.html
+;; (setq gc-cons-threshold (* 800 1024))
+;; (setq gc-cons-percentage 0.5)
+;; (run-with-idle-timer 5 t #'garbage-collect)
+;; (setq garbage-collection-messages t)
+
+* Org Mode
+[[http://katherine.cox-buday.com/blog/2015/03/14/writing-specs-with-org-mode/][Writing Specs With Org Mode]]
+
+** Configuration
+https://emacs.stackexchange.com/questions/17710/use-package-with-config-to-set-variables
+
+* PlantUML
+http://plantuml.com/
+https://github.com/dfeich/org-babel-examples/blob/master/plantuml/plantuml-babel.org
+https://zhangweize.wordpress.com/2010/08/25/creating-uml-images-by-using-plantuml-and-org-babel-in-emacs/
+
+
+#+BEGIN_SRC plantuml :file swimlanes.png
+  @startuml
+  |Swimlane1|
+  start
+  :foo1;
+  |#AntiqueWhite|Swimlane2|
+  :foo2;
+  :foo3;
+  |Swimlane1|
+  :foo4;
+  |Swimlane2|
+  :foo5;
+  stop
+  @enduml
+#+END_SRC
+
+#+RESULTS:
+[[file:swimlanes.png]]
+
+* LaTex
+https://tex.stackexchange.com/questions/150515/use-of-templates-in-org-mode-of-emacs
+** Hide src_blocks
+https://emacs.stackexchange.com/questions/27467/way-to-hide-src-block-delimiters
+
+
+
+** Algorithms
+https://tex.stackexchange.com/questions/28627/how-to-install-the-algorithms-package
+
+** ByteField
+http://texdoc.net/texmf-dist/doc/latex/bytefield/bytefield.pdf
+
+** Exporting
+http://orgmode.org/tmp/worg/org-tutorials/org-latex-export.html
+http://orgmode.org/manual/Quoting-LaTeX-code.html#Quoting-LaTeX-code
+https://tex.stackexchange.com/questions/167583/include-custom-file-into-header-with-org-mode
+https://stackoverflow.com/questions/8853312/how-can-i-make-org-mode-export-to-latex-with-a-specific-preamble
+https://gist.github.com/dweinstein/3644419
+
+** AMS Math and Maxiplot
+You can setup a AMS article by looking at these:
+http://orgmode.org/worg/org-contrib/babel/examples/article-class.html
+https://tex.stackexchange.com/questions/150515/use-of-templates-in-org-mode-of-emacs
+
+https://emacs.stackexchange.com/questions/14413/how-to-embed-latex-in-org-mode
+http://maxima.sourceforge.net/contrib/maxiplot/maxiplot_en.pdf
+https://github.com/sympy/sympy/wiki/SymPy-vs.-Maxima
+http://hyperpolyglot.org/computer-algebra
+http://www.sympygamma.com/input/?i=integrate+log%28x^2%29
+
+* TikZ
+
+http://texample.net/tikz/examples/
+
+
+https://tex.stackexchange.com/questions/268568/how-to-fill-some-packets-in-a-queue-in-tikz
+
+** Packets
+https://github.com/tabascoeye/TikZ-diagrams/tree/master/networking
+https://tex.stackexchange.com/questions/95405/designing-packet-structure-of-a-protocol
+https://tex.stackexchange.com/questions/76001/drawing-a-packet-layout-with-tikz
+

@@ -1,0 +1,88 @@
+ #+TITLE:       Your Title
+ #+AUTHOR:      John Arens
+
+* Org-mode
+
+
+#+BEGIN_SRC emacs-lisp
+       (+ 1 2 3 4)
+#+END_SRC
+
+#+RESULTS:
+: 10
+
+
+#+begin_src sh
+  echo "This file takes up `du -h orgmode.org |sed 's/\([0-9k]*\)[ ]*org-babel.org/\1/'`"
+#+end_src
+
+#+RESULTS:
+| This file takes up 4.0K | orgmode.org |
+
+** ditaa
+#+begin_src ditaa :file blue.png :cmdline -r
++---------+
+| cBLU    |
+|         |
+|    +----+
+|    |cPNK|
+|    |    |
++----+----+
+#+end_src
+
+#+RESULTS:
+[[file:blue.png]]
+
+** python
+#+begin_src python
+import sys
+return sys.version
+#+end_src
+
+#+RESULTS:
+: 2.7.13 |Anaconda 4.3.1 (64-bit)| (default, Dec 20 2016, 23:09:15) 
+: [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+
+
+* Babel
+http://orgmode.org/worg/org-contrib/babel/intro.html
+
+* Capture Setup
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+(define-key global-map "\C-cc" 'org-capture)
+
+* Using capture
+C-c c
+Start a capture process, placing you into a narrowed indirect buffer to edit. 
+C-c C-c
+Once you are done entering information into the capture buffer, C-c C-c will return you to the window configuration before the capture process, so that you can resume your work without further distraction. 
+C-c C-w
+Finalize by moving the entry to a refile location (see section 9.2). 
+C-c C-k
+Abort the capture process and return to the previous state.
+
+* Capture templates
+
+You can use templates to generate different types of capture notes, and to store them in different places. For example, if you would like to store new tasks under a heading ‘Tasks’ in file TODO.org, and journal entries in a date tree in journal.org you could use:
+
+     (setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
+             "* TODO %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/org/journal.org")
+             "* %?\nEntered on %U\n  %i\n  %a")))
+In these entries, the first string is the key to reach the template, the second is a short description. Then follows the type of the entry and a definition of the target location for storing the note. Finally, the template itself, a string with %-escapes to fill in information based on time and context.
+
+When you call M-x org-capture, Org will prompt for a key to select the template (if you have more than one template) and then prepare the buffer like
+
+     * TODO
+       [[file:link to where you were when initiating capture]]
+During expansion of the template, special %-escapes1 allow dynamic insertion of content. Here is a small selection of the possibilities, consult the manual for more.
+
+     %a          annotation, normally the link created with org-store-link
+     %i          initial content, the region when capture is called with C-u.
+     %t, %T      timestamp, date only, or date and time
+     %u, %U      like above, but inactive timestamps
+
+http://orgmode.org/guide/index.html#Top
+
+http://orgmode.org/manual/
